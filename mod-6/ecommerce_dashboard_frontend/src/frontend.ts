@@ -37,7 +37,7 @@ const renderReview = (review: any, productId: number) => {
 };
 
 /**
- * Renders a formatted card showing sales statistics.
+ * Renders a formatted sales report at the end.
  */
 const renderSalesReport = (report: { totalSales: number; unitsSold: number; averagePrice: number }) => {
   const card = document.createElement("div");
@@ -76,9 +76,23 @@ const main = async () => {
 
     for (const product of products) {
       try {
-        // Fetch and render reviews for each product
+        // Fetch reviews for each product
         const reviews = await retryPromise(() => fetchProductReviews(product.id), 3, 1000);
+
+        // If reviews exist, add a "Reviews" header
+        if (reviews.length > 0) {
+          const reviewsContainer = document.getElementById(`reviews-${product.id}`);
+          if (reviewsContainer) {
+            const title = document.createElement("h3");
+            title.className = "review-title";
+            title.textContent = "Reviews";
+            reviewsContainer.appendChild(title);
+          }
+        }
+
+        // Render each review under the corresponding product card
         reviews.forEach(review => renderReview(review, product.id));
+
       } catch (err) {
         renderError(`Error fetching reviews for ${product.name}:\n${err}`);
       }
