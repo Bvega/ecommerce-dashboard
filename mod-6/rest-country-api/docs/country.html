@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Country Details</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <main id="country-detail">
-    <!-- Details will be populated via JS -->
+  <header>
+    <h1>Country Details</h1>
+    <button id="theme-toggle">🌙 Dark Mode</button>
+  </header>
+
+  <main id="country-detail" style="padding: 1rem;">
+    <!-- Dynamic country details go here -->
   </main>
-  <script src="js/country.js"></script>
+
+  <script type="module" src="js/country.js"></script>
+  <script type="module" src="js/theme.js"></script>
 </body>
 </html>

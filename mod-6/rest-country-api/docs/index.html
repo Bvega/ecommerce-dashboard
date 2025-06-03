@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>REST Countries App</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header>
@@ -14,7 +14,7 @@
 
   <main>
     <section class="controls">
-      <input type="text" id="search" placeholder="Search for a country..." />
+      <input type="text" id="search" placeholder="Search by country name..." />
       <select id="region-filter">
         <option value="">Filter by Region</option>
         <option value="Africa">Africa</option>
@@ -24,9 +24,13 @@
         <option value="Oceania">Oceania</option>
       </select>
     </section>
-    <section id="country-list" class="grid"></section>
+
+    <section id="country-list" class="grid">
+      <!-- Cards injected by JS -->
+    </section>
   </main>
 
-  <script src="js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/theme.js"></script>
 </body>
 </html>

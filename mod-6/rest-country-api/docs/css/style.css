@@ -144,3 +144,28 @@ select {
     flex-direction: column;
   }
 }
+/* 🌙 Dark Mode Styles */
+body.dark-mode {
+  background-color: #202c36;
+  color: #ffffff;
+}
+
+body.dark-mode header,
+body.dark-mode .card,
+body.dark-mode .detail-text,
+body.dark-mode select,
+body.dark-mode input {
+  background-color: #2b3945;
+  color: #ffffff;
+}
+
+body.dark-mode .view-btn,
+body.dark-mode .border-btn {
+  background-color: #445b6e;
+  color: white;
+}
+
+body.dark-mode .view-btn:hover,
+body.dark-mode .border-btn:hover {
+  background-color: #3a4e5f;
+}
