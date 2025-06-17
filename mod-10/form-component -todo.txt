@@ -1,0 +1,10 @@
+## To-Do List
+1. Create `src/RegistrationForm.module.css` with styles for form container, inputs, error, and button.
+2. Update `src/RegistrationForm.tsx`:
+   - Import CSS module.
+   - Apply classes to form, groups, inputs, error text, checkbox, and button.
+   - Add `isFormValid`, disable button until valid.
+   - Add `validField` class for green border on valid inputs.
+3. (Optional) Wrap form in `App.tsx` container with max-width and margin.
+4. Test styled and interactive form in the browser.
+5. Commit styling and enhancements with message: "Reapply form embellishment".

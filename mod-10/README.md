@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# Registration Form Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React + TypeScript application demonstrating a styled registration form with live validation and state management using `useState`.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Username, Password, Confirm Password, Email fields
+* Live password match validation with inline error message
+* Email validation (checks for `@`)
+* "Subscribe to Newsletter" checkbox enabled only with valid email
+* Disabled "Register" button until all validations pass
+* Styled with CSS Modules for scoped, maintainable styles
+* Dark theme with centered form card
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* React 18
+* TypeScript
+* Vite
+* CSS Modules
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   cd mod-10
+   ```
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+4. Open your browser at `http://localhost:5173`.
+
+## File Structure
+
+```
+mod-10/
+├── public/
+│   └── index.html
+├── src/
+│   ├── index.css        # Global dark theme and centering styles
+│   ├── main.tsx         # Entry point, imports global styles and App component
+│   ├── App.tsx          # Wraps RegistrationForm in centered container
+│   ├── RegistrationForm.tsx
+│   └── RegistrationForm.module.css
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* Fill in all fields. The Register button remains disabled until:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+  * Username is non-empty
+  * Password is non-empty and matches Confirm Password
+  * Email is empty or contains `@`
+* The newsletter checkbox only becomes clickable when a valid email is entered.
+* Upon successful validation, clicking "Register" logs the form data to the console.
+
+## Customization
+
+* **Styling**: Modify `RegistrationForm.module.css` to adjust colors, spacing, or typography.
+* **Validation**: Enhance validation logic in `RegistrationForm.tsx` (e.g., stronger email regex, password strength).
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## License
+
+This project is open source and available under the MIT License.

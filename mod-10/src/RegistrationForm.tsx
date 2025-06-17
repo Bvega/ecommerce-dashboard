@@ -1,85 +1,97 @@
+// src/RegistrationForm.tsx
 import React, { useState } from 'react';
+import styles from './RegistrationForm.module.css';
 
 const RegistrationForm: React.FC = () => {
-  // 1) State hooks for each field
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
   const [subscribeToNewsletter, setSubscribeToNewsletter] = useState(false);
 
-  // 2) Simple email validity check
-  const isEmailValid = email.includes('@');
+  const isUsernameValid = username.trim() !== '';
+  const isPasswordValid = password !== '';
+  const isConfirmValid = password !== '' && confirmPassword === password;
+  const isEmailValid = email === '' || email.includes('@');
+  const canSubscribe = email.includes('@');
 
-  // 3) Submit handler
+  const isFormValid =
+    isUsernameValid &&
+    isPasswordValid &&
+    isConfirmValid &&
+    isEmailValid;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Only log if passwords match and (email is empty or valid)
-    if (password === confirmPassword && (!email || isEmailValid)) {
+    if (isFormValid) {
       console.log({ username, password, email, subscribeToNewsletter });
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* Username */}
-      <div>
+    <form onSubmit={handleSubmit} className={styles.formContainer}>
+      <div className={styles.formGroup}>
         <label>Username:</label>
         <input
           type="text"
           value={username}
           onChange={e => setUsername(e.target.value)}
+          className={`${styles.inputField} ${isUsernameValid ? styles.validField : ''}`}
         />
       </div>
 
-      {/* Password */}
-      <div>
+      <div className={styles.formGroup}>
         <label>Password:</label>
         <input
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
+          className={`${styles.inputField} ${isPasswordValid ? styles.validField : ''}`}
         />
       </div>
 
-      {/* Confirm Password + live-match error */}
-      <div>
+      <div className={styles.formGroup}>
         <label>Confirm Password:</label>
         <input
           type="password"
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
+          className={`${styles.inputField} ${isConfirmValid ? styles.validField : ''}`}
         />
-        {confirmPassword && confirmPassword !== password && (
-          <p style={{ color: 'red' }}>Passwords do not match.</p>
+        {confirmPassword && !isConfirmValid && (
+          <p className={styles.errorText}>Passwords do not match.</p>
         )}
       </div>
 
-      {/* Email (optional) */}
-      <div>
+      <div className={styles.formGroup}>
         <label>Email (optional):</label>
         <input
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          className={`${styles.inputField} ${email && isEmailValid ? styles.validField : ''}`}
         />
       </div>
 
-      {/* Newsletter checkbox (only enabled if email valid) */}
-      <div>
+      <div className={styles.checkboxContainer}>
         <label>
           <input
             type="checkbox"
             checked={subscribeToNewsletter}
             onChange={e => setSubscribeToNewsletter(e.target.checked)}
-            disabled={!isEmailValid}
+            disabled={!canSubscribe}
           />
           Subscribe to newsletter
         </label>
       </div>
 
-      {/* Submit button */}
-      <button type="submit">Register</button>
+      <button
+        type="submit"
+        className={styles.submitButton}
+        disabled={!isFormValid}
+      >
+        Register
+      </button>
     </form>
   );
 };
