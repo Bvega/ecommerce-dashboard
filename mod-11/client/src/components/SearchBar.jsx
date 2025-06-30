@@ -1,16 +1,14 @@
 import React from 'react';
 
-const SearchBar = ({ value, onChange }) => {
+export default function SearchBar({ value, onChange }) {
   return (
     <input
       type="text"
+      aria-label="Search countries by name"
       placeholder="Search for a country..."
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full md:w-1/3 p-2 shadow rounded"
-      aria-label="Search countries by name"
+      className="w-full max-w-sm py-2 px-4 rounded shadow focus:ring transition"
     />
   );
-};
-
-export default SearchBar;
+}

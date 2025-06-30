@@ -2,13 +2,13 @@ import React from 'react';
 
 const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
-const RegionFilter = ({ value, onChange }) => {
+export default function RegionFilter({ value, onChange }) {
   return (
     <select
+      aria-label="Filter countries by region"
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full md:w-1/5 p-2 shadow rounded"
-      aria-label="Filter countries by region"
+      className="w-full max-w-xs py-2 px-4 rounded shadow focus:ring transition"
     >
       <option value="">Filter by Region</option>
       {regions.map((region) => (
@@ -18,6 +18,4 @@ const RegionFilter = ({ value, onChange }) => {
       ))}
     </select>
   );
-};
-
-export default RegionFilter;
+}

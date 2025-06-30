@@ -1,24 +1,21 @@
 import React, { createContext, useState, useEffect } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
-export const ThemeContext = createContext();
+export const ThemeContext = createContext({
+  theme: 'light',
+  toggleTheme: () => {},
+});
 
-export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+export default function ThemeProvider({ children }) {
+  const [theme, setTheme] = useLocalStorage('theme', 'light');
 
-  // On mount, read theme from localStorage or default to light
-  useEffect(() => {
-    const stored = localStorage.getItem('theme');
-    if (stored) setTheme(stored);
-  }, []);
-
-  // Apply theme class to <html> and persist
+  // Apply theme class to <html>
   useEffect(() => {
     document.documentElement.className = theme;
-    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
@@ -26,4 +23,4 @@ export const ThemeProvider = ({ children }) => {
       {children}
     </ThemeContext.Provider>
   );
-};
+}
