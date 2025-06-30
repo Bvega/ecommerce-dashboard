@@ -1,0 +1,32 @@
+:root {
+  --bg-color: hsl(0, 0%, 98%);
+  --text-color: hsl(200, 15%, 8%);
+  --element-bg: hsl(0, 0%, 100%);
+  --input-bg: hsl(0, 0%, 52%);
+  --header-bg: hsl(0, 0%, 100%);
+}
+
+.dark {
+  --bg-color: hsl(207, 26%, 17%);
+  --text-color: hsl(0, 0%, 100%);
+  --element-bg: hsl(209, 23%, 22%);
+  --input-bg: hsl(209, 23%, 22%);
+  --header-bg: hsl(209, 23%, 22%);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+input,
+select {
+  background-color: var(--element-bg);
+  color: var(--text-color);
+}
+
+header,
+.shadow {
+  background-color: var(--element-bg);
+  color: var(--text-color);
+}
