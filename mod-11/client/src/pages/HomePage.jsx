@@ -17,13 +17,13 @@ export default function HomePage() {
   const { data: countries, loading, error } = useFetch(path);
 
   return (
-    <main className="container mx-auto p-4">
-      <div className="controls flex flex-col md:flex-row justify-between mb-4">
+    <main className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-6">
+      <div className="controls flex flex-col lg:flex-row justify-between items-center gap-4 mb-6">
         <SearchBar value={searchTerm} onChange={setSearchTerm} />
         <RegionFilter value={selectedRegion} onChange={setSelectedRegion} />
       </div>
-      {loading && <p>Loading countries...</p>}
-      {error && <p>Error: {error}</p>}
+      {loading && <p className="text-center">Loading countries...</p>}
+      {error && <p className="text-center text-red-500">Error: {error}</p>}
       {countries && <CountryList countries={countries} />}
     </main>
   );
